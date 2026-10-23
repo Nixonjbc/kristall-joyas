@@ -58,3 +58,14 @@ button{touch-action:manipulation}
 .total{margin-top:0}
 .whatsapp{display:block;width:100%;border-radius:10px;border:1px solid #65dc99;background:linear-gradient(180deg,#27b967,#138b4d);color:white;font-weight:750;padding:14px 12px;font-size:15px;margin:8px 0;box-shadow:0 5px 18px #1bb46c30}
 .toast-kristall{position:fixed;z-index:999;top:calc(18px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);width:min(90vw,400px);padding:15px 18px;border-radius:12px;border:1px solid #d5a855;background:#17211e;color:#f8dca0;box-shadow:0 14px 40px #000b;text-align:center;font-size:15px;font-weight:650}
+
+
+/* Inicio R5: protagonista el logotipo, sin marcos ni iconos decorativos */
+.brand{height:220px!important;width:100%;margin:0 auto 8px!important;border:none!important;border-radius:0!important;background:radial-gradient(ellipse 75% 56% at 50% 51%,#27231b 0%,#141816 58%,transparent 100%)!important;overflow:hidden;isolation:isolate}
+.brand:before,.brand:after{content:''!important;position:absolute;top:18px!important;bottom:12px;width:35%;height:auto;opacity:.16!important;pointer-events:none;background:repeating-radial-gradient(ellipse at center,transparent 0 16px,#bd9650 17px 18px,transparent 19px 31px);filter:blur(1.2px);mask-image:linear-gradient(to right,#000,transparent)}
+.brand:before{left:0!important;right:auto!important}
+.brand:after{right:0!important;left:auto!important;transform:scaleX(-1)}
+.brand img{display:block;width:255px!important;height:255px!important;max-width:none;object-fit:contain!important;border:0!important;border-radius:0!important;position:relative;z-index:2;filter:drop-shadow(0 0 16px #e2b65a35)!important;mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 57%,rgba(0,0,0,.9) 73%,transparent 100%)}
+.head{min-height:42px!important;padding:5px 0 2px!important}
+.total{margin-bottom:8px!important}
+.section-title{margin:10px 0 6px!important}
