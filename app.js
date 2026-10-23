@@ -40,7 +40,7 @@ function receiptCanvas(){
  const m=db.moves.find(x=>x.id===editing),c=client(m.clientId),r=running(m.clientId,m.id),cv=document.createElement('canvas');
  if(!m||!c)return Promise.reject(Error('Movimiento no encontrado'));
  const rows=[['Cliente',c.name],['Fecha',stamp(m)],...(m.description?[['Prenda',m.description]]:[]),...(m.grams?[['Peso',m.grams+' g']]:[]),...(m.karats?[['Quilates',m.karats]]:[]),...(m.priceGram?[['Precio por gramo',money(m.priceGram)]]:[]),...(m.method?[['Método',m.method]]:[])];
- const W=900,H=430+rows.length*58+295+(m.revisions.length?88:0);cv.width=W;cv.height=H;const x=cv.getContext('2d');
+ const W=900,H=520+rows.length*58+295+(m.revisions.length?88:0);cv.width=W;cv.height=H;const x=cv.getContext('2d');
  const img=new Image();img.src='logo.jpg';
  return new Promise((resolve,reject)=>{img.onload=()=>{
  x.fillStyle='#0b1011';x.fillRect(0,0,W,H);x.strokeStyle='#c99a48';x.lineWidth=3;x.strokeRect(20,20,860,H-40);
