@@ -25,3 +25,26 @@ body{background:radial-gradient(ellipse at 50% 0%,#131716 0%,#080a0a 60%);color:
 .detail-row{padding:11px 0;border-bottom:1px solid #30383a;font-size:13px}.detail-row span:first-child{color:#b6bdbe}.detail-row span:last-child{font-weight:560}
 .big{font-size:30px;font-weight:800}.notice{background:#242119;border-color:#a7833b;color:#e8d9b6}.receipt{background:radial-gradient(ellipse at top,#252012,#090c0d 60%);border:1.5px solid #d3a448;border-radius:9px;padding:14px 12px}.receipt-logo{width:108px;height:108px}.receipt h2{font-size:18px}.receipt .detail-row{font-size:12px}.receipt .ref{color:#ebc980}
 .success{font-size:65px;text-shadow:0 0 22px #1fff8a66}.empty{padding:22px 12px;font-size:13px}
+
+
+/* Approved R3: stable iOS viewport and compact visual hierarchy */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:hidden}
+body{overflow-x:hidden;min-width:0}
+input,select,textarea{font-size:16px!important;max-width:100%;min-width:0}
+button{touch-action:manipulation}
+#app{width:100%;overflow-x:clip}
+.brand{height:108px;margin:0 0 10px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border:1px solid #4a391d;border-radius:11px;background:radial-gradient(ellipse at center,#2d2517 0%,#111412 46%,#0b0d0d 100%)}
+.brand:before,.brand:after{content:'◇  ✧  ◇';position:absolute;top:37px;color:#b58a3d;opacity:.3;letter-spacing:7px;font-size:18px}
+.brand:before{left:9px}.brand:after{right:9px}
+.brand img{width:116px;height:104px;object-fit:contain;border-radius:0;position:relative;z-index:1;filter:drop-shadow(0 0 9px #d4ad5a45)}
+.total{padding:12px 15px;margin-bottom:9px}.total:before{top:23px}.total .big{font-size:27px}
+.section-title{margin:12px 0 7px}
+.field input:focus,.field textarea:focus{outline:1px solid #d8a34e}
+.price-suggestion{border:1px solid #b48b3e;background:linear-gradient(115deg,#30271a,#151b1a);border-radius:11px;padding:13px;margin:12px 0}
+.price-suggestion .suggested{font-size:25px;color:#f5c768;font-weight:800;margin:5px 0}
+.price-suggestion button{margin-top:8px}
+.price-note{font-size:12px;color:#d8c8a6;margin-top:7px}
+.modal-overlay{position:fixed;inset:0;z-index:90;background:#000b;display:grid;place-items:center;padding:18px}
+.modal-panel{background:#151b1c;border:1px solid #c39545;border-radius:15px;max-width:430px;width:100%;padding:20px;box-shadow:0 12px 60px #000b}
+.modal-panel h2{color:#f2c66a;font-size:19px;margin:0 0 12px}
+.receipt{max-width:430px;margin:12px auto}.receipt-logo{width:135px;height:115px;object-fit:contain;border-radius:0}.receipt h2{margin:4px 0;font-size:17px}
