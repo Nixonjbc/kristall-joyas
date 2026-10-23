@@ -48,3 +48,13 @@ button{touch-action:manipulation}
 .modal-panel{background:#151b1c;border:1px solid #c39545;border-radius:15px;max-width:430px;width:100%;padding:20px;box-shadow:0 12px 60px #000b}
 .modal-panel h2{color:#f2c66a;font-size:19px;margin:0 0 12px}
 .receipt{max-width:430px;margin:12px auto}.receipt-logo{width:135px;height:115px;object-fit:contain;border-radius:0}.receipt h2{margin:4px 0;font-size:17px}
+
+
+/* R4: hero de marca sin marco literal; ornamentos de marca de agua */
+.brand{height:175px;margin:0 0 7px;border:0;border-radius:0;background:radial-gradient(ellipse at center,#29231a 0%,#131716 54%,transparent 79%);overflow:hidden}
+.brand:before,.brand:after{content:'✧ ◇ ✦ ◇ ✧';top:72px;font-family:Georgia,serif;letter-spacing:9px;font-size:21px;color:#f3dba4;opacity:.16;white-space:nowrap}
+.brand:before{left:-30px}.brand:after{right:-30px}
+.brand img{width:190px;height:174px;object-fit:contain;border:0;filter:drop-shadow(0 0 15px #d4a95765)}
+.total{margin-top:0}
+.whatsapp{display:block;width:100%;border-radius:10px;border:1px solid #65dc99;background:linear-gradient(180deg,#27b967,#138b4d);color:white;font-weight:750;padding:14px 12px;font-size:15px;margin:8px 0;box-shadow:0 5px 18px #1bb46c30}
+.toast-kristall{position:fixed;z-index:999;top:calc(18px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);width:min(90vw,400px);padding:15px 18px;border-radius:12px;border:1px solid #d5a855;background:#17211e;color:#f8dca0;box-shadow:0 14px 40px #000b;text-align:center;font-size:15px;font-weight:650}
