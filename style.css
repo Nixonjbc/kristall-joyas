@@ -91,3 +91,28 @@ button{touch-action:manipulation}
 .home-page .total .eyebrow{font-size:12px;color:#f7eddb}
 .home-page .total .big{font-size:clamp(33px,9vw,43px);color:#ffdb80;margin:4px 0}
 .home-page .total .muted{font-size:15px;color:#f7f0e5}
+
+
+.home-search-wrap{position:relative;margin:0 2px 9px}
+.home-search-wrap>span{position:absolute;top:6px;left:14px;font-size:27px;color:#e2b865}
+.home-search-wrap .search{padding:12px 12px 12px 45px;border-radius:15px;background:linear-gradient(110deg,#0e161b,#14202a);border:1px solid #465159}
+.home-section{display:flex;justify-content:space-between;align-items:center;margin:8px 3px 6px}
+.home-section .section-title{font:22px Georgia,serif;color:#f7cb71;margin:0!important}
+.home-section>span{color:#a8a9ae;font-size:12px}
+.home-page #client-results{display:flex;flex-direction:column;gap:5px}
+.home-page .client-row{border:1px solid #62451e;border-left:5px solid #e8ad41;border-radius:12px!important;background:linear-gradient(110deg,#30200d,#0b1114 76%);min-height:61px;padding:8px 9px;gap:10px}
+.home-page .client-row.paid-up{background:linear-gradient(110deg,#22272b,#0c1215 76%);border-color:#31383b;border-left-color:#94999b}
+.home-page .avatar{width:42px;height:42px;background:linear-gradient(140deg,#d99b33,#68410e);border:1.5px solid #ffd06a;color:#fff8e9;font-size:15px;font-weight:700;box-shadow:0 0 10px #c58a3755}
+.home-page .paid-up .avatar{background:linear-gradient(135deg,#4a4e52,#171b1d);border-color:#9da0a3;box-shadow:none}
+.home-page .client-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.home-page .client-name{font-size:14px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.home-page .client-status{align-self:flex-start;background:linear-gradient(#ffe08a,#d7a13b);color:#181008;border-radius:14px;font-size:9px;font-weight:800;padding:2px 8px}
+.home-page .paid-up .client-status{background:linear-gradient(#797e82,#474c50);color:#fff}
+.home-page .client-row .amount{font-size:15px;color:#ffcf68}
+.home-page .client-row .amount.zero{color:#a8acb1}
+.home-page .client-chevron{color:#f4c669;font-size:25px}
+#app:has(.home-page) .nav{background:radial-gradient(ellipse at top,#34200d,#0a0a0a 78%);border-top:1px solid #bd8c3e;border-radius:18px 18px 0 0}
+#app:has(.home-page) .nav button{color:#e7e0d5;gap:5px}
+#app:has(.home-page) .nav .symbol{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:linear-gradient(140deg,#ffe28e,#e1a635);color:#161008;font-size:31px;font-weight:800;box-shadow:0 0 12px #d5a03e44}
+#app:has(.home-page) .nav button.active{color:#ffd375;font-weight:700}
+#app:has(.home-page) .nav button.active:after{content:"";width:65px;height:3px;background:#edb848;border-radius:3px}
