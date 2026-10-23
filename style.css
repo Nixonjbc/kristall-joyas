@@ -69,3 +69,25 @@ button{touch-action:manipulation}
 .head{min-height:42px!important;padding:5px 0 2px!important}
 .total{margin-bottom:8px!important}
 .section-title{margin:10px 0 6px!important}
+
+
+/* Inicio aprobado: estilos propios */
+#app:has(.home-page){padding-left:12px;padding-right:12px}
+.home-hero{height:250px;position:relative;margin:0 -12px;background:radial-gradient(ellipse at center,#30200b,#090909 75%);overflow:hidden}
+.home-hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,#f7c76a77 1px,transparent 6px),radial-gradient(circle at 70% 50%,#e6b35788 1px,transparent 5px);background-size:71px 59px,93px 87px;opacity:.65}
+.home-hero .home-gear{position:absolute;right:14px;top:5px;z-index:6;background:none;border:0;color:#ffda78;font-size:28px}
+.home-hero .brand{height:250px!important;background:transparent!important;margin:0!important;display:flex;align-items:center;justify-content:center}
+.home-hero .brand:before{content:""!important;left:-10%!important;top:18px!important;width:47%;height:165px;opacity:.8!important;background:linear-gradient(135deg,transparent 20%,#e6b75b 21%,transparent 22%),linear-gradient(35deg,transparent 45%,#f7d78b 46%,transparent 47%),linear-gradient(160deg,transparent 55%,#c18b35 56%,transparent 57%),radial-gradient(ellipse,#ac782f,transparent 70%);clip-path:polygon(0 28%,48% 0,100% 25%,90% 72%,48% 100%,0 68%);filter:drop-shadow(0 0 10px #f4c66d)}
+.home-hero .brand:after{content:""!important;left:auto!important;right:-18%!important;top:128px!important;width:76%;height:82px;opacity:.7!important;transform:rotate(-7deg);background:repeating-radial-gradient(ellipse at 15% 105%,transparent 0 8px,#e4ad4d 9px,transparent 11px 16px);border-radius:50%}
+.brand-logo{position:relative;z-index:3;display:flex;align-items:center;flex-direction:column;text-align:center;transform:translateY(-5px)}
+.brand-gem{font:23px Georgia,serif;color:#f8ce6d;line-height:18px;height:46px}
+.brand-gem span{display:block;font-size:48px;line-height:28px}
+.brand-script{font-family:"Snell Roundhand","Brush Script MT","Apple Chancery",cursive;font-style:italic;font-size:clamp(47px,12vw,65px);color:#f9d575;line-height:1.1;text-shadow:0 0 14px #b7873a}
+.brand-joyas{display:flex;align-items:center;gap:9px;font:25px Georgia,serif;letter-spacing:2px;color:#ffe1a0}
+.brand-joyas i{width:32px;height:2px;background:#f6cc71}
+.brand-city{color:#f4c96a;font-size:13px;letter-spacing:1px;margin-top:4px}
+.brand-ribbon{position:absolute;bottom:13px;left:-10%;width:120%;height:55px;border-bottom:2px solid #c58c33;border-radius:50%;transform:rotate(-3deg)}
+.home-page .total{text-align:center!important;margin:0 2px 10px!important;padding:13px 10px!important;border:1.5px solid #f7cc69;border-radius:14px;background:radial-gradient(ellipse at center,#0b0c0c 20%,#4b3010 80%,#9d6827 125%);box-shadow:inset 0 0 18px #b9853999}
+.home-page .total .eyebrow{font-size:12px;color:#f7eddb}
+.home-page .total .big{font-size:clamp(33px,9vw,43px);color:#ffdb80;margin:4px 0}
+.home-page .total .muted{font-size:15px;color:#f7f0e5}
