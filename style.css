@@ -153,3 +153,11 @@ button{touch-action:manipulation}
 .home-page .total:before,.home-page .total:after{bottom:-66px!important;opacity:.42!important}
 .home-page .total .eyebrow,.home-page .total .big,.home-page .total .muted{position:relative;z-index:2;margin-left:0!important}
 @media(min-width:480px){.home-hero{max-height:185px}}
+
+
+/* Inicio v1.10: botón de configuración real y versión visible */
+.home-settings{top:8px!important;right:8px!important;gap:3px!important;z-index:12!important}
+.home-settings .home-gear{display:grid!important;place-items:center!important;width:44px!important;height:44px!important;padding:0!important;border:1px solid #f7d477!important;border-radius:13px!important;background:linear-gradient(145deg,#4c3516,#100d08 75%)!important;box-shadow:0 3px 9px #000d,inset 0 1px 2px #ffe3a755,0 0 9px #e6b24a55!important;color:#ffe29a!important;font-size:27px!important;line-height:1!important;text-shadow:0 1px 3px #000!important;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.home-settings .home-gear:active{transform:scale(.93);background:linear-gradient(145deg,#73501b,#231508)!important}
+.home-settings .home-gear:focus-visible{outline:2px solid #fff2bf!important;outline-offset:3px!important}
+.home-settings .home-version{display:block!important;position:relative;z-index:13;padding:2px 5px;border-radius:5px;background:#0b0809e8;color:#f9d68a;font-size:9px;font-weight:700;letter-spacing:0;text-align:center;white-space:nowrap;text-shadow:0 1px 2px #000}
