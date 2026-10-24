@@ -161,3 +161,8 @@ button{touch-action:manipulation}
 .home-settings .home-gear:active{transform:scale(.93);background:linear-gradient(145deg,#73501b,#231508)!important}
 .home-settings .home-gear:focus-visible{outline:2px solid #fff2bf!important;outline-offset:3px!important}
 .home-settings .home-version{display:block!important;position:relative;z-index:13;padding:2px 5px;border-radius:5px;background:#0b0809e8;color:#f9d68a;font-size:9px;font-weight:700;letter-spacing:0;text-align:center;white-space:nowrap;text-shadow:0 1px 2px #000}
+
+/* Opción A aprobada: iconos decorativos pequeños, sin alterar campos ni cálculos */
+#movement-form .three .field label{display:flex;align-items:center;gap:5px;white-space:nowrap;font-size:clamp(10px,2.8vw,14px)}
+#movement-form .jewel-field-icon{display:inline-flex;align-items:center;justify-content:center;flex:none;font-size:17px;line-height:1;filter:drop-shadow(0 1px 2px #000)}
+#movement-form .jewel-price-icon{font-size:13px;letter-spacing:-1px;color:#f8cc6d}
