@@ -172,3 +172,11 @@ button{touch-action:manipulation}
 #movement-form .jewel-field-icon svg{display:block;width:100%;height:100%;fill:#d49a36;fill-opacity:.16;stroke:#f5c963;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
 #movement-form .jewel-price-icon{width:37px;flex-basis:37px}
 #movement-form .three .field label{gap:3px;font-size:clamp(10px,2.7vw,13px)}
+
+/* v1.12: ilustraciones doradas con volumen, sin emojis de iOS */
+#movement-form .jewel-field-icon{width:27px;height:27px;flex:0 0 27px;filter:drop-shadow(0 1px 2px #b77a2866)}
+#movement-form .jewel-price-icon{width:46px;flex-basis:46px}
+#movement-form .jewel-field-icon svg{width:100%;height:100%;stroke:none;fill:none}
+#movement-form .three .field label{gap:2px;font-size:clamp(10px,2.6vw,13px)}
+/* Mantener proporciones naturales del encabezado y evitar estiramiento forzado */
+.home-hero{background-size:100% auto!important;aspect-ratio:520/193!important}
