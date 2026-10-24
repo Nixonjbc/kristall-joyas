@@ -180,3 +180,10 @@ button{touch-action:manipulation}
 #movement-form .three .field label{gap:2px;font-size:clamp(10px,2.6vw,13px)}
 /* Mantener proporciones naturales del encabezado y evitar estiramiento forzado */
 .home-hero{background-size:100% auto!important;aspect-ratio:520/193!important}
+
+/* v1.13: ilustraciones aprobadas directamente desde el PNG subido a GitHub */
+#movement-form .jewel-art{display:inline-block!important;vertical-align:middle;width:28px;height:29px;flex:0 0 28px;background-image:url('./6E4E9DAF-8B80-4511-925D-C35BF8AB4A71.png');background-repeat:no-repeat;background-size:300% auto;filter:none!important}
+#movement-form .jewel-art-scale{background-position:left top}
+#movement-form .jewel-art-bar{background-position:center top}
+#movement-form .jewel-art-price{width:45px;flex-basis:45px;background-size:300% auto;background-position:right top}
+#movement-form .three .field label{gap:3px;font-size:clamp(10px,2.7vw,13px)}
