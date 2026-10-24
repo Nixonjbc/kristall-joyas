@@ -128,3 +128,15 @@ button{touch-action:manipulation}
 .home-version{font-size:9px;line-height:1.2;color:#e7c77f;letter-spacing:.15px;text-shadow:0 1px 3px #000;white-space:nowrap}
 #app:has(.home-page) .nav .symbol svg{display:block;width:28px;height:28px}
 @media(max-width:390px){.home-hero .brand-diamond{width:49vw;left:-25px;top:28px}}
+
+
+/* Inicio v1.8: fondo artístico independiente, sin diamante CSS ni líneas sintéticas */
+.home-hero{background:#070605 url('./hero-luxury.svg') center center/cover no-repeat!important}
+.home-hero:before{display:none!important}
+.home-hero .brand:before,.home-hero .brand:after,.home-hero .brand-ribbon,.home-hero .brand-diamond{display:none!important}
+.home-hero .brand{background:transparent!important}
+.home-hero .brand-logo{z-index:4;filter:drop-shadow(0 3px 7px #000) drop-shadow(0 0 3px #000)}
+.home-hero .brand-script{font-family:"Snell Roundhand","Apple Chancery","Brush Script MT",cursive!important;font-weight:500;letter-spacing:-1.2px}
+.home-page .total{background:radial-gradient(ellipse at 50% 60%,#080a09 13%,#3b270e 72%,#b78032 135%)!important;position:relative;overflow:hidden}
+.home-page .total:before,.home-page .total:after{content:""!important;display:block!important;position:absolute;bottom:-44px;left:-12%;width:55%;height:110px;border:0!important;border-top:1px solid #e8b456a8!important;border-radius:50%;transform:rotate(15deg);opacity:.85!important;pointer-events:none}
+.home-page .total:after{left:auto;right:-12%;transform:rotate(-15deg)}
