@@ -187,3 +187,10 @@ button{touch-action:manipulation}
 #movement-form .jewel-art-bar{background-position:center top}
 #movement-form .jewel-art-price{width:45px;flex-basis:45px;background-size:300% auto;background-position:right top}
 #movement-form .three .field label{gap:3px;font-size:clamp(10px,2.7vw,13px)}
+
+/* v1.14: boceto aprobado: iconos junto a etiquetas, recortados sin texto incrustado */
+#movement-form .three .field label{display:flex;align-items:center;gap:5px;white-space:nowrap;font-size:clamp(10px,2.7vw,13px);min-height:28px}
+#movement-form .jewel-art{display:block!important;width:29px!important;height:23px!important;flex:0 0 29px!important;background-size:300% auto!important;background-repeat:no-repeat!important;overflow:hidden!important;filter:none!important}
+#movement-form .jewel-art-scale{background-position:0 0!important}
+#movement-form .jewel-art-bar{background-position:50% 0!important}
+#movement-form .jewel-art-price{width:38px!important;flex-basis:38px!important;background-position:100% 0!important}
