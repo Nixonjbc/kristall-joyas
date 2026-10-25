@@ -210,3 +210,12 @@ button{touch-action:manipulation}
 #movement-form .jewel-art-scale{background-position:0% 0%!important}
 #movement-form .jewel-art-bar{background-position:50% 0%!important}
 #movement-form .jewel-art-price{background-position:100% 0%!important}
+
+/* v1.17: etiquetas con imagen HTML real, no fondos CSS ni SVG externo */
+#movement-form .three .field label{display:flex;align-items:center;gap:4px;white-space:nowrap;font-size:clamp(10px,2.6vw,13px)}
+#movement-form .jewel-clip{display:inline-block;position:relative;width:32px;height:28px;flex:0 0 32px;overflow:hidden;vertical-align:middle}
+#movement-form .jewel-clip img{position:absolute;display:block!important;width:300px!important;height:auto!important;max-width:none!important;top:-8px;opacity:1!important;visibility:visible!important;pointer-events:none}
+#movement-form .jewel-clip-scale img{left:-2px}
+#movement-form .jewel-clip-bar img{left:-104px}
+#movement-form .jewel-clip-price{width:46px;flex-basis:46px}
+#movement-form .jewel-clip-price img{left:-204px}
