@@ -227,3 +227,18 @@ button{touch-action:manipulation}
 #movement-form .three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 #movement-form .three .field{min-width:0}
 #movement-form .three .field input{width:100%;min-width:0;box-sizing:border-box}
+
+/* Kristall v1.19 — selector y avisos visuales */
+.method-trigger{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:52px;padding:12px 16px;text-align:left;background:#1e2428;color:#f6f2e8;border:1px solid #3b4147;border-radius:12px;font:inherit}
+.method-chevron{font-size:24px;color:#f2c46c;line-height:1}
+.kristall-modal-overlay{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.76);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
+.kristall-modal-panel{width:min(100%,390px);max-height:min(85vh,680px);overflow-y:auto;box-sizing:border-box;padding:24px 20px 18px;background:linear-gradient(145deg,#20201c,#101515 75%);border:1px solid #b88a3b;border-radius:20px;box-shadow:0 22px 65px #000b;color:#f4f0e9}
+.kristall-modal-panel h3{margin:0 0 16px;text-align:center;color:#f5ca78;font-size:21px}
+.kristall-modal-panel p{margin:0 0 22px;color:#eee9e1;line-height:1.55;text-align:center;font-size:16px}
+.kristall-modal-actions{display:grid;gap:10px}
+.kristall-modal-button{width:100%;min-height:48px;border-radius:11px;border:1px solid #b88a3b;background:#171d1e;color:#f4c56f;font-weight:700;font-size:16px}
+.kristall-modal-button.primary-modal{background:linear-gradient(#ffe39a,#e9af47);color:#24190c;border-color:#eac36b}
+.kristall-method-option{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:51px;padding:10px 13px;background:transparent;color:#f3eee5;border:0;border-bottom:1px solid #41403a;text-align:left;font-size:16px}
+.kristall-method-option.active{color:#ffd47c;background:#8a632b25;font-weight:700}
+.kristall-method-option span:last-child{color:#ffd47c;font-size:21px}
+.kristall-modal-panel .method-cancel{margin-top:18px}
