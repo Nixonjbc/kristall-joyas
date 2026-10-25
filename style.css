@@ -219,3 +219,11 @@ button{touch-action:manipulation}
 #movement-form .jewel-clip-bar img{left:-104px}
 #movement-form .jewel-clip-price{width:46px;flex-basis:46px}
 #movement-form .jewel-clip-price img{left:-204px}
+
+/* v1.18: tres archivos PNG independientes con transparencia real */
+#movement-form .three .field label{display:flex;align-items:center;gap:4px;white-space:nowrap;min-width:0;font-size:clamp(10px,2.65vw,13px)}
+#movement-form .jewel-final{display:block!important;object-fit:contain;object-position:center;width:28px!important;height:29px!important;max-width:28px!important;flex:0 0 28px;min-width:0;opacity:1!important;visibility:visible!important}
+#movement-form .jewel-final-price{width:42px!important;max-width:42px!important;flex-basis:42px}
+#movement-form .three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+#movement-form .three .field{min-width:0}
+#movement-form .three .field input{width:100%;min-width:0;box-sizing:border-box}
