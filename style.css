@@ -259,3 +259,9 @@ button{touch-action:manipulation}
 .kristall-calendar-footer{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
 .kristall-calendar-footer .kristall-modal-button:first-child{background:linear-gradient(#ffe49b,#e7ad43);color:#21170b}
 @media(max-width:360px){.kristall-calendar-panel{padding:18px 12px}.kristall-calendar-grid{gap:2px}.calendar-day{font-size:14px}}
+
+/* Banner compartido para todos los comprobantes */
+.receipt{padding:0 0 14px;overflow:hidden}
+.receipt-banner{display:block;width:100%;height:auto;aspect-ratio:2.9/1;object-fit:cover;object-position:center;border-radius:7px 7px 0 0}
+.receipt h2,.receipt .ref,.receipt .detail-row,.receipt .notice,.receipt .foot{margin-left:14px;margin-right:14px}
+.receipt h2{margin-top:14px}
