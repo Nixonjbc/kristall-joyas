@@ -204,3 +204,9 @@ button{touch-action:manipulation}
 #movement-form .jewel-art-scale{background-image:url('./icon-peso.svg')!important}
 #movement-form .jewel-art-bar{background-image:url('./icon-quilates.svg')!important}
 #movement-form .jewel-art-price{background-image:url('./icon-precio.svg')!important;width:41px!important;flex-basis:41px!important}
+
+/* v1.16: iOS Safari no renderiza imagen externa dentro de SVG usado como fondo. Usar PNG original directamente. */
+#movement-form .jewel-art{background-image:url('./6E4E9DAF-8B80-4511-925D-C35BF8AB4A71.png')!important;background-repeat:no-repeat!important;background-size:300% auto!important;background-position-y:0!important;display:inline-block!important;opacity:1!important;visibility:visible!important}
+#movement-form .jewel-art-scale{background-position:0% 0%!important}
+#movement-form .jewel-art-bar{background-position:50% 0%!important}
+#movement-form .jewel-art-price{background-position:100% 0%!important}
