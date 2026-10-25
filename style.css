@@ -242,3 +242,20 @@ button{touch-action:manipulation}
 .kristall-method-option.active{color:#ffd47c;background:#8a632b25;font-weight:700}
 .kristall-method-option span:last-child{color:#ffd47c;font-size:21px}
 .kristall-modal-panel .method-cancel{margin-top:18px}
+
+/* Kristall v1.20 — calendario propio, móvil y accesible */
+.date-trigger{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:52px;padding:12px 9px;background:#1e2428;color:#f4f0e9;border:1px solid #3b4147;border-radius:12px;font:inherit;font-size:16px;white-space:nowrap}
+.date-trigger-icon{color:#f3c66f;font-size:20px}
+.kristall-calendar-panel{padding:22px 18px 18px;max-width:390px}
+.kristall-calendar-panel h3{margin-bottom:16px}
+.kristall-calendar-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:16px}
+.calendar-month{color:#f5cb79;text-transform:capitalize;font-size:18px;text-align:center}
+.calendar-arrow{width:43px;height:43px;border:1px solid #956f37;border-radius:12px;background:#151b1c;color:#ffd17b;font-size:30px;line-height:1}
+.kristall-calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;text-align:center}
+.calendar-weekday{padding:9px 0;color:#a7a29a;font-size:12px;font-weight:700}
+.calendar-day{aspect-ratio:1;min-width:0;border:1px solid transparent;border-radius:12px;background:transparent;color:#f6f0e6;font:inherit;font-size:16px}
+.calendar-day.today{border-color:#ae8849}
+.calendar-day.selected{background:linear-gradient(#ffe49b,#e7ad43);color:#22190d;font-weight:800;border-color:#f8d17e}
+.kristall-calendar-footer{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.kristall-calendar-footer .kristall-modal-button:first-child{background:linear-gradient(#ffe49b,#e7ad43);color:#21170b}
+@media(max-width:360px){.kristall-calendar-panel{padding:18px 12px}.kristall-calendar-grid{gap:2px}.calendar-day{font-size:14px}}
