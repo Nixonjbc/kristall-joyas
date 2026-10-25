@@ -194,3 +194,13 @@ button{touch-action:manipulation}
 #movement-form .jewel-art-scale{background-position:0 0!important}
 #movement-form .jewel-art-bar{background-position:50% 0!important}
 #movement-form .jewel-art-price{width:38px!important;flex-basis:38px!important;background-position:100% 0!important}
+
+/* v1.15: cada icono tiene un recorte independiente, sin textos ni iconos vecinos */
+#movement-form .three{grid-template-columns:repeat(3,minmax(0,1fr));width:100%;min-width:0}
+#movement-form .three .field{min-width:0}
+#movement-form .three .field input{min-width:0;max-width:100%;box-sizing:border-box}
+#movement-form .three .field label{min-width:0;display:flex;align-items:center;gap:4px;white-space:nowrap;font-size:clamp(10px,2.65vw,13px)}
+#movement-form .jewel-art{display:inline-block!important;width:29px!important;height:24px!important;flex:0 0 29px!important;background-repeat:no-repeat!important;background-size:contain!important;background-position:center center!important;filter:none!important}
+#movement-form .jewel-art-scale{background-image:url('./icon-peso.svg')!important}
+#movement-form .jewel-art-bar{background-image:url('./icon-quilates.svg')!important}
+#movement-form .jewel-art-price{background-image:url('./icon-precio.svg')!important;width:41px!important;flex-basis:41px!important}
