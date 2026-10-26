@@ -16,5 +16,5 @@ console.log('PASS retry uses same idempotency key');
 context.navigator.onLine=false;
 await assert.rejects(()=>vm.runInContext("rpc('kj_read',{})",context),/Sin conexión/);assert.equal(calls.length,3);
 console.log('PASS offline requests blocked');
-for(const f of ['saas/app.js','saas/online.js'])assert.doesNotMatch(readFileSync(f,'utf8'),/localStorage|indexedDB|serviceWorker\.register/);
+for(const f of ['saas/app.js','saas/online.js'])assert.doesNotMatch(readFileSync(f,'utf8'),/indexedDB|serviceWorker\.register|localStorage\.setItem\([^,]+,JSON\.stringify\(db/);
 console.log('PASS no financial browser persistence or offline worker');

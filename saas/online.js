@@ -14,17 +14,20 @@ async function api(path,body,method='POST',authenticated=true){
  try{
  const r=await fetch(c.url+path,{method,cache:'no-store',signal:controller.signal,headers:{apikey:c.publishableKey,'Content-Type':'application/json',...(authenticated?{Authorization:'Bearer '+online.session.access_token}:{})},...(body===undefined?{}:{body:JSON.stringify(body)})});
  let value;try{value=await r.json()}catch{const err=Error('Respuesta del servidor no válida.');err.uncertain=true;throw err;}
- if(!r.ok){const err=Error(value.message||value.msg||value.error_description||'No se pudo confirmar la operación.');err.uncertain=r.status>=500;throw err;}
+ if(!r.ok){const err=Error(value.message||value.msg||value.error_description||'No se pudo confirmar la operación.');err.uncertain=r.status>=500;err.status=r.status;err.code=value.code;throw err;}
  return value;
  }finally{clearTimeout(timer)}
 }
 function setSession(s){online.session={...s,expires_at:Date.now()+s.expires_in*1000};}
 function rpc(name,args={}){return api('/rest/v1/rpc/'+name,args);}
+// Only the remembered email is persisted; passwords and financial data are never stored here.
+function rememberedEmail(){try{return localStorage.getItem('joyerias-login-email')||''}catch{return ''}}
+function rememberEmail(email){try{localStorage.setItem('joyerias-login-email',String(email).trim().slice(0,254))}catch{}}
 function authScreen(message=''){
  clearPrivate();
- document.getElementById('app').innerHTML=`<div class="card" style="margin-top:50px"><h1>Control de Créditos Joyerías</h1><p>Acceso a tu joyería · Versión de prueba</p><p role="status">${esc(message)}</p><form onsubmit="loginOnline(event)"><div class="field"><label for="login-email">Correo</label><input id="login-email" name="email" type="email" autocomplete="username" required></div><div class="field"><label for="login-password">Contraseña</label><input id="login-password" name="password" type="password" autocomplete="current-password" required></div><button class="primary">Iniciar sesión</button></form><button type="button" class="secondary" onclick="signupScreen()">Crear mi cuenta</button><a class="secondary" href="install.html">Cómo instalar en iPhone</a><p class="hint">Acceso privado por negocio. La licencia se autoriza manualmente.</p></div>`;
+ document.getElementById('app').innerHTML=`<div class="card" style="margin-top:50px"><h1>Control de Créditos Joyerías</h1><p>Acceso a tu joyería · Versión de prueba</p><p role="status">${esc(message)}</p><form onsubmit="loginOnline(event)"><div class="field"><label for="login-email">Correo</label><input id="login-email" name="email" type="email" autocomplete="username" value="${esc(rememberedEmail())}" autocapitalize="none" spellcheck="false" required></div><div class="field"><label for="login-password">Contraseña</label><input id="login-password" name="password" type="password" autocomplete="current-password" required></div><button type="submit" class="primary">Iniciar sesión</button></form><p class="hint">En iPhone, usa Contraseñas en el teclado para completar el acceso con Face ID. Guarda la contraseña en el iPhone cuando Safari te lo ofrezca.</p><button type="button" class="secondary" onclick="signupScreen()">Crear mi cuenta</button><a class="secondary" href="install.html">Cómo instalar en iPhone</a><p class="hint">Acceso privado por negocio. La licencia se autoriza manualmente.</p></div>`;
 }
-async function loginOnline(e){e.preventDefault();if(online.busy)return;online.busy=true;const f=new FormData(e.target);try{setSession(await api('/auth/v1/token?grant_type=password',{email:f.get('email'),password:f.get('password')},'POST',false));await loadAccount()}catch(err){authScreen(err.message)}finally{online.busy=false}}
+async function loginOnline(e){e.preventDefault();if(online.busy)return;online.busy=true;const f=new FormData(e.target);rememberEmail(f.get('email'));try{setSession(await api('/auth/v1/token?grant_type=password',{email:f.get('email'),password:f.get('password')},'POST',false));await loadAccount()}catch(err){authScreen(err.message)}finally{online.busy=false}}
 async function loadAccount(){
  if(online.uncertain){uncertainScreen();return;}
  clearPrivate();online.account=await rpc('kj_account');
@@ -52,8 +55,22 @@ async function startOnline(){
 }
 window.addEventListener('offline',()=>{clearPrivate();authScreen('Sin conexión. Las operaciones están bloqueadas.');});
 window.addEventListener('online',()=>{if(online.session)loadAccount().catch(e=>authScreen(e.message));else authScreen();});
-// Revalidate on returning to the app. A suspended/expired license cannot use stale data.
-document.addEventListener('visibilitychange',()=>{if(!document.hidden&&online.session){clearPrivate();document.getElementById('app').textContent='Verificando acceso…';loadAccount().catch(e=>authScreen(e.message));}});
+// Validate access on return without destroying forms, the current screen or the MFA code field.
+async function revalidateVisible(){
+ if(document.hidden||!online.session||online.busy||online.resuming)return;
+ if(online.uncertain){uncertainScreen();return;}
+ online.resuming=true;
+ try{
+ const account=await rpc('kj_account');
+ if(online.account?.admin&&!account.admin){const err=Error('La cuenta ya no tiene acceso administrativo.');err.status=403;throw err;}
+ online.account=account;
+ if(online.business){
+ const r=await rpc('kj_read',{b:online.business.id});
+ if(r.version!==online.version&&typeof showToast==='function')showToast('Hay cambios en el servidor. Actualiza antes de guardar.');
+ }
+ }catch(e){if(e.status===401||e.status===403||e.code==='42501')authScreen(e.message);else if(typeof showToast==='function')showToast('No se pudo verificar la conexión. Vuelve a intentar cuando tengas internet.');}finally{online.resuming=false}
+}
+document.addEventListener('visibilitychange',revalidateVisible);
 async function adminScreen(){
  try{const rows=await rpc('kj_admin_list');document.getElementById('app').innerHTML='<h1>Control de Créditos Joyerías</h1><h2>Administración · Joyerías afiliadas</h2><p>15 USD mensuales · Autorización manual</p><button class="secondary" onclick="businessForm()">Nueva joyería (pendiente)</button>'+rows.map((r,i)=>`<div class="card"><strong>${esc(r.name)}</strong><p>${esc(r.status)} · ${esc(r.paidThrough||'Sin vigencia')}</p><button class="secondary" onclick="licenseForm(${i})">Administrar licencia</button></div>`).join('')+'<button class="secondary" onclick="logoutOnline()">Cerrar sesión</button>';online.licenses=rows;const businesses=online.account?.businesses||[];const i=businesses.findIndex(b=>b.name.includes('Prueba'));if(i>=0)document.getElementById('app').innerHTML+='<button class="primary" onclick="selectBusiness('+i+')">Abrir Kristall Joyas · Prueba</button><p class="hint">Recorrido del panel de cliente. Tu cuenta propietaria conserva sus permisos administrativos.</p>';
  }catch(e){await mfaScreen(e.message);}
