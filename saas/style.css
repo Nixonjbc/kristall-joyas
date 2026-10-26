@@ -1,0 +1,267 @@
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#f5f1e9;background:#090909;font-synthesis:none;--gold:#f1c968;--gold2:#b48b37;--panel:#1b1b1b;--muted:#aaa;--green:#48d98a;--red:#ff656a}*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.4}#app{max-width:530px;margin:auto;min-height:100dvh;padding:env(safe-area-inset-top) 15px calc(94px + env(safe-area-inset-bottom))}.head{display:flex;align-items:center;justify-content:space-between;padding:18px 0}.head h1{font-size:18px;margin:0}.back,.gear{border:0;background:none;color:var(--gold);font-size:25px;padding:6px}.brand{text-align:center;margin:0 auto 18px}.brand img{width:155px;height:155px;object-fit:contain;border-radius:50%}.card{background:linear-gradient(135deg,#26221b,#151515);border:1px solid #3a3120;border-radius:15px;padding:16px;margin-bottom:12px}.total{border-color:#715725;text-align:center;padding:20px}.eyebrow,.muted{color:var(--muted);font-size:13px}.big{color:var(--gold);font-size:34px;font-weight:750;margin:5px 0}.gold{color:var(--gold)}.green{color:var(--green)}.red{color:var(--red)}.search{width:100%;background:#202020;border:1px solid #444;border-radius:12px;padding:13px;color:white;outline:none}.search:focus,input:focus,textarea:focus,select:focus{border-color:var(--gold)}.section-title{font-size:17px;color:var(--gold);margin:22px 0 12px}.client-row{display:flex;align-items:center;gap:10px;padding:13px 10px;background:#1b1b1b;border-bottom:1px solid #343434;width:100%;color:white;border-left:0;border-right:0;border-top:0;text-align:left}.client-row:first-child{border-radius:12px 12px 0 0}.client-row:last-child{border-radius:0 0 12px 12px}.avatar{background:linear-gradient(135deg,#7a5b24,#302714);color:#f9e3ac;border-radius:50%;width:38px;height:38px;display:grid;place-items:center;font-size:14px;flex-shrink:0}.grow{flex:1;min-width:0}.amount{font-weight:700;white-space:nowrap}.nav{position:fixed;bottom:0;left:0;right:0;background:#111;border-top:1px solid #383026;display:flex;justify-content:center;padding:8px 8px calc(9px + env(safe-area-inset-bottom));z-index:20}.nav-inner{max-width:530px;width:100%;display:flex}.nav button{width:33.33%;border:0;background:none;color:#aaa;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px}.nav button.active{color:var(--gold)}.nav .symbol{font-size:25px}.field{margin:17px 0}.field label{display:block;margin-bottom:7px;font-size:14px}.field input,.field textarea,.field select{width:100%;padding:13px;background:#222;border:1px solid #414141;color:#fff;border-radius:10px;outline:none}.field textarea{min-height:72px;resize:vertical}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.primary,.secondary,.dangerbtn{width:100%;padding:14px;border-radius:11px;font-weight:750;margin:6px 0}.primary{background:linear-gradient(#f9d77e,#d9a94c);color:#17120b;border:1px solid #f5cd6b}.secondary{background:#181818;color:var(--gold);border:1px solid #94702e}.dangerbtn{background:#261719;color:#ff8b8e;border:1px solid #79373b}.seg{display:flex;border:1px solid #424242;border-radius:12px;overflow:hidden;margin:14px 0}.seg button{flex:1;padding:13px 6px;background:#191919;border:0;color:#ddd}.seg button.selected{background:var(--gold);color:#18120a;font-weight:750}.summary{display:flex;justify-content:space-between;gap:8px}.summary>div{flex:1}.table-wrap{overflow-x:auto}.ledger{width:100%;border-collapse:collapse;font-size:12px}.ledger th{background:#242424;color:#aaa;text-align:left;font-weight:500;padding:11px 5px}.ledger td{padding:13px 5px;border-bottom:1px solid #333}.ledger td:nth-child(3),.ledger td:nth-child(4),.ledger th:nth-child(3),.ledger th:nth-child(4){text-align:right;white-space:nowrap}.ledger tr{cursor:pointer}.ledger .corrected{color:var(--gold);font-size:10px}.detail-row{display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid #343434}.detail-row span:first-child{color:#aaa}.detail-row span:last-child{text-align:right}.hint{font-size:12px;color:#aaa;line-height:1.5}.selector{position:fixed;inset:0;background:#0e0e0e;z-index:50;overflow:auto;padding:calc(15px + env(safe-area-inset-top)) 14px 30px}.selector-bar{display:flex;gap:8px;align-items:center}.selector-bar input{flex:1;min-width:0}.selector-bar button{border:0;background:var(--gold);border-radius:9px;padding:13px;color:#17120b;font-weight:750}.notice{border:1px solid #655126;border-radius:10px;background:#292318;padding:12px;font-size:13px;line-height:1.45}.success{text-align:center;font-size:58px;color:var(--green);padding:20px 0 4px}.receipt{background:#101010;border:2px solid #c79b41;border-radius:13px;padding:18px 14px;margin:16px 0}.receipt-logo{display:block;width:105px;height:105px;object-fit:cover;border-radius:50%;margin:auto}.receipt h2{text-align:center;font-size:20px;margin:12px 0 4px}.receipt .ref{text-align:center;font-size:12px;color:#aaa;margin-bottom:20px}.receipt .detail-row{font-size:13px}.receipt .detail-row span:first-child{color:#d2c3a5}.receipt .foot{text-align:center;color:#dfc38b;font-size:12px;margin:20px 0 0}.mini{font-size:12px}.empty{text-align:center;color:#aaa;padding:35px 15px}.screen-title{display:flex;align-items:center;gap:10px}.badge{border:1px solid #856b34;color:var(--gold);border-radius:7px;padding:4px 7px;font-size:11px}.separator{height:1px;background:#393939;margin:15px 0}.topline{font-size:12px;color:#aaa;margin:8px 0 18px}a{color:var(--gold)}
+
+
+/* Kristall premium mobile redesign — reference mockups */
+:root{--gold:#f4c968;--gold2:#ad7725;--panel:#121718;--muted:#aeb1b5;--green:#2cdb88;--red:#ff4d5d}
+body{background:radial-gradient(ellipse at 50% 0%,#131716 0%,#080a0a 60%);color:#f6f5f0}
+#app{max-width:480px;padding:env(safe-area-inset-top) 17px calc(90px + env(safe-area-inset-bottom))}
+.head{padding:13px 0 9px;min-height:54px}.head h1{font-size:16px;font-weight:680;letter-spacing:-.2px}.back{font-size:33px;font-weight:300}.gear{font-size:23px}
+.brand{margin:0 auto 5px}.brand img{width:160px;height:160px;object-fit:cover;border-radius:50%;filter:drop-shadow(0 0 10px #c79b4130)}
+.card{background:linear-gradient(130deg,#181d1e,#101314);border:1px solid #323637;border-radius:12px;padding:13px;margin-bottom:10px;box-shadow:0 5px 18px #0002}
+.total{background:linear-gradient(120deg,#40351d,#22231e 64%,#171a18);border:1px solid #8c6b32;border-radius:13px;text-align:left;padding:14px 16px;margin-bottom:14px;position:relative}
+.total:before{content:'♛';position:absolute;left:16px;top:31px;font-size:37px;color:#f3c45c;opacity:.85}
+.total .eyebrow,.total .muted,.total .big{margin-left:54px}.total .eyebrow{font-size:12px;color:#f0dfba}.total .big{font-size:30px;line-height:1.15;margin-top:5px;margin-bottom:3px;font-weight:800;letter-spacing:.3px}.total .muted{font-size:12px;color:#eee0c1}
+.search{background:linear-gradient(130deg,#202527,#171b1d);border:1px solid #3c4345;border-radius:10px;padding:12px 13px;font-size:14px}
+.section-title{font-size:16px;margin:18px 0 10px;color:#f6c75e;font-weight:720}
+.client-row{background:linear-gradient(115deg,#181d1e,#111516);border-bottom:1px solid #303536;min-height:54px;padding:8px 10px;font-size:13px}
+.client-row:first-child{border-radius:10px 10px 0 0}.client-row:last-child{border-radius:0 0 10px 10px}
+.avatar{background:linear-gradient(135deg,#a67d31,#503c1e);color:#fff2d3;width:34px;height:34px;font-size:13px;font-weight:650}
+.client-row .amount{font-size:14px;color:#f8cb68}.client-row .gold:last-child{font-size:23px}
+.nav{background:#0b0d0e;border-top:1px solid #38332a;padding:8px 7px calc(8px + env(safe-area-inset-bottom))}.nav button{font-size:11px;gap:1px}.nav .symbol{font-size:25px}.nav button.active .symbol{color:#1b1408;background:linear-gradient(#ffe090,#e9ad3e);border-radius:50%;width:35px;height:35px;display:grid;place-items:center}.nav button.active{font-weight:650}
+.field{margin:12px 0}.field label{font-size:12px;margin-bottom:6px;color:#e8e8e8}.field input,.field textarea,.field select{background:linear-gradient(110deg,#21272a,#171b1d);border:1px solid #394044;border-radius:9px;padding:12px;font-size:14px}.field textarea{min-height:65px}
+.primary,.secondary,.dangerbtn{padding:12px;border-radius:9px;font-size:13px;margin:5px 0}.primary{background:linear-gradient(180deg,#ffe292,#f4c35d 65%,#df9f37);border:1px solid #fbd47a;box-shadow:inset 0 1px #fff4c088;color:#1a1408}.secondary{background:linear-gradient(125deg,#161b1c,#0c1011);border:1px solid #a97e35;color:#f6cb6e}
+.seg{margin:11px 0;border-color:#333b3c;border-radius:10px}.seg button{background:#14191a;font-size:13px;padding:11px 5px}.seg button.selected{background:linear-gradient(#ffe18b,#e5aa3f);color:#17120a}
+.ledger{font-size:11px}.ledger th{background:#192022;padding:9px 5px;color:#c0c6c7}.ledger td{padding:12px 5px;border-bottom:1px solid #31383a;line-height:1.35}.ledger tbody tr:active{background:#431b1c}.ledger .corrected{color:#f6b96b}.ledger .muted{font-size:10px}.ledger td:nth-child(3){font-weight:700}.ledger td:nth-child(4){font-weight:650}
+.detail-row{padding:11px 0;border-bottom:1px solid #30383a;font-size:13px}.detail-row span:first-child{color:#b6bdbe}.detail-row span:last-child{font-weight:560}
+.big{font-size:30px;font-weight:800}.notice{background:#242119;border-color:#a7833b;color:#e8d9b6}.receipt{background:radial-gradient(ellipse at top,#252012,#090c0d 60%);border:1.5px solid #d3a448;border-radius:9px;padding:14px 12px}.receipt-logo{width:108px;height:108px}.receipt h2{font-size:18px}.receipt .detail-row{font-size:12px}.receipt .ref{color:#ebc980}
+.success{font-size:65px;text-shadow:0 0 22px #1fff8a66}.empty{padding:22px 12px;font-size:13px}
+
+
+/* Approved R3: stable iOS viewport and compact visual hierarchy */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:hidden}
+body{overflow-x:hidden;min-width:0}
+input,select,textarea{font-size:16px!important;max-width:100%;min-width:0}
+button{touch-action:manipulation}
+#app{width:100%;overflow-x:clip}
+.brand{height:108px;margin:0 0 10px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border:1px solid #4a391d;border-radius:11px;background:radial-gradient(ellipse at center,#2d2517 0%,#111412 46%,#0b0d0d 100%)}
+.brand:before,.brand:after{content:'◇  ✧  ◇';position:absolute;top:37px;color:#b58a3d;opacity:.3;letter-spacing:7px;font-size:18px}
+.brand:before{left:9px}.brand:after{right:9px}
+.brand img{width:116px;height:104px;object-fit:contain;border-radius:0;position:relative;z-index:1;filter:drop-shadow(0 0 9px #d4ad5a45)}
+.total{padding:12px 15px;margin-bottom:9px}.total:before{top:23px}.total .big{font-size:27px}
+.section-title{margin:12px 0 7px}
+.field input:focus,.field textarea:focus{outline:1px solid #d8a34e}
+.price-suggestion{border:1px solid #b48b3e;background:linear-gradient(115deg,#30271a,#151b1a);border-radius:11px;padding:13px;margin:12px 0}
+.price-suggestion .suggested{font-size:25px;color:#f5c768;font-weight:800;margin:5px 0}
+.price-suggestion button{margin-top:8px}
+.price-note{font-size:12px;color:#d8c8a6;margin-top:7px}
+.modal-overlay{position:fixed;inset:0;z-index:90;background:#000b;display:grid;place-items:center;padding:18px}
+.modal-panel{background:#151b1c;border:1px solid #c39545;border-radius:15px;max-width:430px;width:100%;padding:20px;box-shadow:0 12px 60px #000b}
+.modal-panel h2{color:#f2c66a;font-size:19px;margin:0 0 12px}
+.receipt{max-width:430px;margin:12px auto}.receipt-logo{width:135px;height:115px;object-fit:contain;border-radius:0}.receipt h2{margin:4px 0;font-size:17px}
+
+
+/* R4: hero de marca sin marco literal; ornamentos de marca de agua */
+.brand{height:175px;margin:0 0 7px;border:0;border-radius:0;background:radial-gradient(ellipse at center,#29231a 0%,#131716 54%,transparent 79%);overflow:hidden}
+.brand:before,.brand:after{content:'✧ ◇ ✦ ◇ ✧';top:72px;font-family:Georgia,serif;letter-spacing:9px;font-size:21px;color:#f3dba4;opacity:.16;white-space:nowrap}
+.brand:before{left:-30px}.brand:after{right:-30px}
+.brand img{width:190px;height:174px;object-fit:contain;border:0;filter:drop-shadow(0 0 15px #d4a95765)}
+.total{margin-top:0}
+.whatsapp{display:block;width:100%;border-radius:10px;border:1px solid #65dc99;background:linear-gradient(180deg,#27b967,#138b4d);color:white;font-weight:750;padding:14px 12px;font-size:15px;margin:8px 0;box-shadow:0 5px 18px #1bb46c30}
+.toast-kristall{position:fixed;z-index:999;top:calc(18px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);width:min(90vw,400px);padding:15px 18px;border-radius:12px;border:1px solid #d5a855;background:#17211e;color:#f8dca0;box-shadow:0 14px 40px #000b;text-align:center;font-size:15px;font-weight:650}
+
+
+/* Inicio R5: protagonista el logotipo, sin marcos ni iconos decorativos */
+.brand{height:220px!important;width:100%;margin:0 auto 8px!important;border:none!important;border-radius:0!important;background:radial-gradient(ellipse 75% 56% at 50% 51%,#27231b 0%,#141816 58%,transparent 100%)!important;overflow:hidden;isolation:isolate}
+.brand:before,.brand:after{content:''!important;position:absolute;top:18px!important;bottom:12px;width:35%;height:auto;opacity:.16!important;pointer-events:none;background:repeating-radial-gradient(ellipse at center,transparent 0 16px,#bd9650 17px 18px,transparent 19px 31px);filter:blur(1.2px);mask-image:linear-gradient(to right,#000,transparent)}
+.brand:before{left:0!important;right:auto!important}
+.brand:after{right:0!important;left:auto!important;transform:scaleX(-1)}
+.brand img{display:block;width:255px!important;height:255px!important;max-width:none;object-fit:contain!important;border:0!important;border-radius:0!important;position:relative;z-index:2;filter:drop-shadow(0 0 16px #e2b65a35)!important;mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 57%,rgba(0,0,0,.9) 73%,transparent 100%)}
+.head{min-height:42px!important;padding:5px 0 2px!important}
+.total{margin-bottom:8px!important}
+.section-title{margin:10px 0 6px!important}
+
+
+/* Inicio aprobado: estilos propios */
+#app:has(.home-page){padding-left:12px;padding-right:12px}
+.home-hero{height:250px;position:relative;margin:0 -12px;background:radial-gradient(ellipse at center,#30200b,#090909 75%);overflow:hidden}
+.home-hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,#f7c76a77 1px,transparent 6px),radial-gradient(circle at 70% 50%,#e6b35788 1px,transparent 5px);background-size:71px 59px,93px 87px;opacity:.65}
+.home-hero .home-gear{position:absolute;right:14px;top:5px;z-index:6;background:none;border:0;color:#ffda78;font-size:28px}
+.home-hero .brand{height:250px!important;background:transparent!important;margin:0!important;display:flex;align-items:center;justify-content:center}
+.home-hero .brand:before{content:""!important;left:-10%!important;top:18px!important;width:47%;height:165px;opacity:.8!important;background:linear-gradient(135deg,transparent 20%,#e6b75b 21%,transparent 22%),linear-gradient(35deg,transparent 45%,#f7d78b 46%,transparent 47%),linear-gradient(160deg,transparent 55%,#c18b35 56%,transparent 57%),radial-gradient(ellipse,#ac782f,transparent 70%);clip-path:polygon(0 28%,48% 0,100% 25%,90% 72%,48% 100%,0 68%);filter:drop-shadow(0 0 10px #f4c66d)}
+.home-hero .brand:after{content:""!important;left:auto!important;right:-18%!important;top:128px!important;width:76%;height:82px;opacity:.7!important;transform:rotate(-7deg);background:repeating-radial-gradient(ellipse at 15% 105%,transparent 0 8px,#e4ad4d 9px,transparent 11px 16px);border-radius:50%}
+.brand-logo{position:relative;z-index:3;display:flex;align-items:center;flex-direction:column;text-align:center;transform:translateY(-5px)}
+.brand-gem{font:23px Georgia,serif;color:#f8ce6d;line-height:18px;height:46px}
+.brand-gem span{display:block;font-size:48px;line-height:28px}
+.brand-script{font-family:"Snell Roundhand","Brush Script MT","Apple Chancery",cursive;font-style:italic;font-size:clamp(47px,12vw,65px);color:#f9d575;line-height:1.1;text-shadow:0 0 14px #b7873a}
+.brand-joyas{display:flex;align-items:center;gap:9px;font:25px Georgia,serif;letter-spacing:2px;color:#ffe1a0}
+.brand-joyas i{width:32px;height:2px;background:#f6cc71}
+.brand-city{color:#f4c96a;font-size:13px;letter-spacing:1px;margin-top:4px}
+.brand-ribbon{position:absolute;bottom:13px;left:-10%;width:120%;height:55px;border-bottom:2px solid #c58c33;border-radius:50%;transform:rotate(-3deg)}
+.home-page .total{text-align:center!important;margin:0 2px 10px!important;padding:13px 10px!important;border:1.5px solid #f7cc69;border-radius:14px;background:radial-gradient(ellipse at center,#0b0c0c 20%,#4b3010 80%,#9d6827 125%);box-shadow:inset 0 0 18px #b9853999}
+.home-page .total .eyebrow{font-size:12px;color:#f7eddb}
+.home-page .total .big{font-size:clamp(33px,9vw,43px);color:#ffdb80;margin:4px 0}
+.home-page .total .muted{font-size:15px;color:#f7f0e5}
+
+
+.home-search-wrap{position:relative;margin:0 2px 9px}
+.home-search-wrap>span{position:absolute;top:6px;left:14px;font-size:27px;color:#e2b865}
+.home-search-wrap .search{padding:12px 12px 12px 45px;border-radius:15px;background:linear-gradient(110deg,#0e161b,#14202a);border:1px solid #465159}
+.home-section{display:flex;justify-content:space-between;align-items:center;margin:8px 3px 6px}
+.home-section .section-title{font:22px Georgia,serif;color:#f7cb71;margin:0!important}
+.home-section>span{color:#a8a9ae;font-size:12px}
+.home-page #client-results{display:flex;flex-direction:column;gap:5px}
+.home-page .client-row{border:1px solid #62451e;border-left:5px solid #e8ad41;border-radius:12px!important;background:linear-gradient(110deg,#30200d,#0b1114 76%);min-height:61px;padding:8px 9px;gap:10px}
+.home-page .client-row.paid-up{background:linear-gradient(110deg,#22272b,#0c1215 76%);border-color:#31383b;border-left-color:#94999b}
+.home-page .avatar{width:42px;height:42px;background:linear-gradient(140deg,#d99b33,#68410e);border:1.5px solid #ffd06a;color:#fff8e9;font-size:15px;font-weight:700;box-shadow:0 0 10px #c58a3755}
+.home-page .paid-up .avatar{background:linear-gradient(135deg,#4a4e52,#171b1d);border-color:#9da0a3;box-shadow:none}
+.home-page .client-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.home-page .client-name{font-size:14px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.home-page .client-status{align-self:flex-start;background:linear-gradient(#ffe08a,#d7a13b);color:#181008;border-radius:14px;font-size:9px;font-weight:800;padding:2px 8px}
+.home-page .paid-up .client-status{background:linear-gradient(#797e82,#474c50);color:#fff}
+.home-page .client-row .amount{font-size:15px;color:#ffcf68}
+.home-page .client-row .amount.zero{color:#a8acb1}
+.home-page .client-chevron{color:#f4c669;font-size:25px}
+#app:has(.home-page) .nav{background:radial-gradient(ellipse at top,#34200d,#0a0a0a 78%);border-top:1px solid #bd8c3e;border-radius:18px 18px 0 0}
+#app:has(.home-page) .nav button{color:#e7e0d5;gap:5px}
+#app:has(.home-page) .nav .symbol{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:linear-gradient(140deg,#ffe28e,#e1a635);color:#161008;font-size:31px;font-weight:800;box-shadow:0 0 12px #d5a03e44}
+#app:has(.home-page) .nav button.active{color:#ffd375;font-weight:700}
+#app:has(.home-page) .nav button.active:after{content:"";width:65px;height:3px;background:#edb848;border-radius:3px}
+
+
+/* Inicio v1.7: diamante de fondo, personas y versión */
+.home-hero .brand-diamond{position:absolute;z-index:1;top:22px;left:-21px;width:min(49vw,240px);height:200px;opacity:.95;filter:drop-shadow(0 0 19px #efb75688);transform:rotate(-10deg);pointer-events:none}
+.home-hero .brand-diamond svg{width:100%;height:100%;display:block}
+.home-hero .brand:before{opacity:.12!important}
+.home-hero .brand-logo{z-index:4}
+.home-settings{position:absolute;z-index:8;right:8px;top:5px;display:flex;flex-direction:column;align-items:center;gap:1px}
+.home-settings .home-gear{position:static!important;display:block;padding:0 5px;line-height:1.1}
+.home-version{font-size:9px;line-height:1.2;color:#e7c77f;letter-spacing:.15px;text-shadow:0 1px 3px #000;white-space:nowrap}
+#app:has(.home-page) .nav .symbol svg{display:block;width:28px;height:28px}
+@media(max-width:390px){.home-hero .brand-diamond{width:49vw;left:-25px;top:28px}}
+
+
+/* Inicio v1.8: fondo artístico independiente, sin diamante CSS ni líneas sintéticas */
+.home-hero{background:#070605 url('./hero-luxury.svg') center center/cover no-repeat!important}
+.home-hero:before{display:none!important}
+.home-hero .brand:before,.home-hero .brand:after,.home-hero .brand-ribbon,.home-hero .brand-diamond{display:none!important}
+.home-hero .brand{background:transparent!important}
+.home-hero .brand-logo{z-index:4;filter:drop-shadow(0 3px 7px #000) drop-shadow(0 0 3px #000)}
+.home-hero .brand-script{font-family:"Snell Roundhand","Apple Chancery","Brush Script MT",cursive!important;font-weight:500;letter-spacing:-1.2px}
+.home-page .total{background:radial-gradient(ellipse at 50% 60%,#080a09 13%,#3b270e 72%,#b78032 135%)!important;position:relative;overflow:hidden}
+.home-page .total:before,.home-page .total:after{content:""!important;display:block!important;position:absolute;bottom:-44px;left:-12%;width:55%;height:110px;border:0!important;border-top:1px solid #e8b456a8!important;border-radius:50%;transform:rotate(15deg);opacity:.85!important;pointer-events:none}
+.home-page .total:after{left:auto;right:-12%;transform:rotate(-15deg)}
+
+
+/* Inicio v1.9: boceto aprobado como capa visual, controles y saldos HTML reales */
+.home-hero{background-image:url('./hero-kristall.jpg'),url('./hero-luxury.svg')!important;background-position:center top!important;background-size:100% 100%!important;background-repeat:no-repeat!important;height:auto!important;aspect-ratio:1024/380!important;min-height:0!important}
+.home-hero .brand{display:none!important}
+.home-settings{top:12px;right:13px}
+.home-settings .home-gear{width:42px;height:42px;font-size:0!important;cursor:pointer}
+.home-settings .home-gear:focus-visible{outline:2px solid #ffd675;outline-offset:2px}
+.home-version{display:none!important}
+.home-page .total{background:linear-gradient(110deg,#5a320d,#0c0a08 35%,#0c0a08 65%,#5a320d)!important;box-shadow:inset 0 0 20px #e5ac4c66,0 0 5px #b88030!important;border:1.5px solid #f6c35e!important;min-height:104px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.home-page .total:before,.home-page .total:after{bottom:-66px!important;opacity:.42!important}
+.home-page .total .eyebrow,.home-page .total .big,.home-page .total .muted{position:relative;z-index:2;margin-left:0!important}
+@media(min-width:480px){.home-hero{max-height:185px}}
+
+
+/* Inicio v1.10: botón de configuración real y versión visible */
+.home-settings{top:8px!important;right:8px!important;gap:3px!important;z-index:12!important}
+.home-settings .home-gear{display:grid!important;place-items:center!important;width:44px!important;height:44px!important;padding:0!important;border:1px solid #f7d477!important;border-radius:13px!important;background:linear-gradient(145deg,#4c3516,#100d08 75%)!important;box-shadow:0 3px 9px #000d,inset 0 1px 2px #ffe3a755,0 0 9px #e6b24a55!important;color:#ffe29a!important;font-size:27px!important;line-height:1!important;text-shadow:0 1px 3px #000!important;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.home-settings .home-gear:active{transform:scale(.93);background:linear-gradient(145deg,#73501b,#231508)!important}
+.home-settings .home-gear:focus-visible{outline:2px solid #fff2bf!important;outline-offset:3px!important}
+.home-settings .home-version{display:block!important;position:relative;z-index:13;padding:2px 5px;border-radius:5px;background:#0b0809e8;color:#f9d68a;font-size:9px;font-weight:700;letter-spacing:0;text-align:center;white-space:nowrap;text-shadow:0 1px 2px #000}
+
+/* Opción A aprobada: iconos decorativos pequeños, sin alterar campos ni cálculos */
+#movement-form .three .field label{display:flex;align-items:center;gap:5px;white-space:nowrap;font-size:clamp(10px,2.8vw,14px)}
+#movement-form .jewel-field-icon{display:inline-flex;align-items:center;justify-content:center;flex:none;font-size:17px;line-height:1;filter:drop-shadow(0 1px 2px #000)}
+#movement-form .jewel-price-icon{font-size:13px;letter-spacing:-1px;color:#f8cc6d}
+
+/* Iconos vectoriales dorados: reemplazan emojis del sistema iOS */
+#movement-form .jewel-field-icon{width:23px;height:23px;flex:0 0 23px;color:#e9b951;filter:drop-shadow(0 0 2px #bd812c77)}
+#movement-form .jewel-field-icon svg{display:block;width:100%;height:100%;fill:#d49a36;fill-opacity:.16;stroke:#f5c963;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+#movement-form .jewel-price-icon{width:37px;flex-basis:37px}
+#movement-form .three .field label{gap:3px;font-size:clamp(10px,2.7vw,13px)}
+
+/* v1.12: ilustraciones doradas con volumen, sin emojis de iOS */
+#movement-form .jewel-field-icon{width:27px;height:27px;flex:0 0 27px;filter:drop-shadow(0 1px 2px #b77a2866)}
+#movement-form .jewel-price-icon{width:46px;flex-basis:46px}
+#movement-form .jewel-field-icon svg{width:100%;height:100%;stroke:none;fill:none}
+#movement-form .three .field label{gap:2px;font-size:clamp(10px,2.6vw,13px)}
+/* Mantener proporciones naturales del encabezado y evitar estiramiento forzado */
+.home-hero{background-size:100% auto!important;aspect-ratio:520/193!important}
+
+/* v1.13: ilustraciones aprobadas directamente desde el PNG subido a GitHub */
+#movement-form .jewel-art{display:inline-block!important;vertical-align:middle;width:28px;height:29px;flex:0 0 28px;background-image:url('./6E4E9DAF-8B80-4511-925D-C35BF8AB4A71.png');background-repeat:no-repeat;background-size:300% auto;filter:none!important}
+#movement-form .jewel-art-scale{background-position:left top}
+#movement-form .jewel-art-bar{background-position:center top}
+#movement-form .jewel-art-price{width:45px;flex-basis:45px;background-size:300% auto;background-position:right top}
+#movement-form .three .field label{gap:3px;font-size:clamp(10px,2.7vw,13px)}
+
+/* v1.14: boceto aprobado: iconos junto a etiquetas, recortados sin texto incrustado */
+#movement-form .three .field label{display:flex;align-items:center;gap:5px;white-space:nowrap;font-size:clamp(10px,2.7vw,13px);min-height:28px}
+#movement-form .jewel-art{display:block!important;width:29px!important;height:23px!important;flex:0 0 29px!important;background-size:300% auto!important;background-repeat:no-repeat!important;overflow:hidden!important;filter:none!important}
+#movement-form .jewel-art-scale{background-position:0 0!important}
+#movement-form .jewel-art-bar{background-position:50% 0!important}
+#movement-form .jewel-art-price{width:38px!important;flex-basis:38px!important;background-position:100% 0!important}
+
+/* v1.15: cada icono tiene un recorte independiente, sin textos ni iconos vecinos */
+#movement-form .three{grid-template-columns:repeat(3,minmax(0,1fr));width:100%;min-width:0}
+#movement-form .three .field{min-width:0}
+#movement-form .three .field input{min-width:0;max-width:100%;box-sizing:border-box}
+#movement-form .three .field label{min-width:0;display:flex;align-items:center;gap:4px;white-space:nowrap;font-size:clamp(10px,2.65vw,13px)}
+#movement-form .jewel-art{display:inline-block!important;width:29px!important;height:24px!important;flex:0 0 29px!important;background-repeat:no-repeat!important;background-size:contain!important;background-position:center center!important;filter:none!important}
+#movement-form .jewel-art-scale{background-image:url('./icon-peso.svg')!important}
+#movement-form .jewel-art-bar{background-image:url('./icon-quilates.svg')!important}
+#movement-form .jewel-art-price{background-image:url('./icon-precio.svg')!important;width:41px!important;flex-basis:41px!important}
+
+/* v1.16: iOS Safari no renderiza imagen externa dentro de SVG usado como fondo. Usar PNG original directamente. */
+#movement-form .jewel-art{background-image:url('./6E4E9DAF-8B80-4511-925D-C35BF8AB4A71.png')!important;background-repeat:no-repeat!important;background-size:300% auto!important;background-position-y:0!important;display:inline-block!important;opacity:1!important;visibility:visible!important}
+#movement-form .jewel-art-scale{background-position:0% 0%!important}
+#movement-form .jewel-art-bar{background-position:50% 0%!important}
+#movement-form .jewel-art-price{background-position:100% 0%!important}
+
+/* v1.17: etiquetas con imagen HTML real, no fondos CSS ni SVG externo */
+#movement-form .three .field label{display:flex;align-items:center;gap:4px;white-space:nowrap;font-size:clamp(10px,2.6vw,13px)}
+#movement-form .jewel-clip{display:inline-block;position:relative;width:32px;height:28px;flex:0 0 32px;overflow:hidden;vertical-align:middle}
+#movement-form .jewel-clip img{position:absolute;display:block!important;width:300px!important;height:auto!important;max-width:none!important;top:-8px;opacity:1!important;visibility:visible!important;pointer-events:none}
+#movement-form .jewel-clip-scale img{left:-2px}
+#movement-form .jewel-clip-bar img{left:-104px}
+#movement-form .jewel-clip-price{width:46px;flex-basis:46px}
+#movement-form .jewel-clip-price img{left:-204px}
+
+/* v1.18: tres archivos PNG independientes con transparencia real */
+#movement-form .three .field label{display:flex;align-items:center;gap:4px;white-space:nowrap;min-width:0;font-size:clamp(10px,2.65vw,13px)}
+#movement-form .jewel-final{display:block!important;object-fit:contain;object-position:center;width:28px!important;height:29px!important;max-width:28px!important;flex:0 0 28px;min-width:0;opacity:1!important;visibility:visible!important}
+#movement-form .jewel-final-price{width:42px!important;max-width:42px!important;flex-basis:42px}
+#movement-form .three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+#movement-form .three .field{min-width:0}
+#movement-form .three .field input{width:100%;min-width:0;box-sizing:border-box}
+
+/* Kristall v1.19 — selector y avisos visuales */
+.method-trigger{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:52px;padding:12px 16px;text-align:left;background:#1e2428;color:#f6f2e8;border:1px solid #3b4147;border-radius:12px;font:inherit}
+.method-chevron{font-size:24px;color:#f2c46c;line-height:1}
+.kristall-modal-overlay{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.76);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
+.kristall-modal-panel{width:min(100%,390px);max-height:min(85vh,680px);overflow-y:auto;box-sizing:border-box;padding:24px 20px 18px;background:linear-gradient(145deg,#20201c,#101515 75%);border:1px solid #b88a3b;border-radius:20px;box-shadow:0 22px 65px #000b;color:#f4f0e9}
+.kristall-modal-panel h3{margin:0 0 16px;text-align:center;color:#f5ca78;font-size:21px}
+.kristall-modal-panel p{margin:0 0 22px;color:#eee9e1;line-height:1.55;text-align:center;font-size:16px}
+.kristall-modal-actions{display:grid;gap:10px}
+.kristall-modal-button{width:100%;min-height:48px;border-radius:11px;border:1px solid #b88a3b;background:#171d1e;color:#f4c56f;font-weight:700;font-size:16px}
+.kristall-modal-button.primary-modal{background:linear-gradient(#ffe39a,#e9af47);color:#24190c;border-color:#eac36b}
+.kristall-method-option{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:51px;padding:10px 13px;background:transparent;color:#f3eee5;border:0;border-bottom:1px solid #41403a;text-align:left;font-size:16px}
+.kristall-method-option.active{color:#ffd47c;background:#8a632b25;font-weight:700}
+.kristall-method-option span:last-child{color:#ffd47c;font-size:21px}
+.kristall-modal-panel .method-cancel{margin-top:18px}
+
+/* Kristall v1.20 — calendario propio, móvil y accesible */
+.date-trigger{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:52px;padding:12px 9px;background:#1e2428;color:#f4f0e9;border:1px solid #3b4147;border-radius:12px;font:inherit;font-size:16px;white-space:nowrap}
+.date-trigger-icon{color:#f3c66f;font-size:20px}
+.kristall-calendar-panel{padding:22px 18px 18px;max-width:390px}
+.kristall-calendar-panel h3{margin-bottom:16px}
+.kristall-calendar-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:16px}
+.calendar-month{color:#f5cb79;text-transform:capitalize;font-size:18px;text-align:center}
+.calendar-arrow{width:43px;height:43px;border:1px solid #956f37;border-radius:12px;background:#151b1c;color:#ffd17b;font-size:30px;line-height:1}
+.kristall-calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;text-align:center}
+.calendar-weekday{padding:9px 0;color:#a7a29a;font-size:12px;font-weight:700}
+.calendar-day{aspect-ratio:1;min-width:0;border:1px solid transparent;border-radius:12px;background:transparent;color:#f6f0e6;font:inherit;font-size:16px}
+.calendar-day.today{border-color:#ae8849}
+.calendar-day.selected{background:linear-gradient(#ffe49b,#e7ad43);color:#22190d;font-weight:800;border-color:#f8d17e}
+.kristall-calendar-footer{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.kristall-calendar-footer .kristall-modal-button:first-child{background:linear-gradient(#ffe49b,#e7ad43);color:#21170b}
+@media(max-width:360px){.kristall-calendar-panel{padding:18px 12px}.kristall-calendar-grid{gap:2px}.calendar-day{font-size:14px}}
+
+/* Banner compartido para todos los comprobantes */
+.receipt{padding:0 0 14px;overflow:hidden}
+.receipt-banner{display:block;width:100%;height:auto;aspect-ratio:2.9/1;object-fit:cover;object-position:center;border-radius:7px 7px 0 0}
+.receipt h2,.receipt .ref,.receipt .detail-row,.receipt .notice,.receipt .foot{margin-left:14px;margin-right:14px}
+.receipt h2{margin-top:14px}
