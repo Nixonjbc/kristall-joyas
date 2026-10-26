@@ -11,15 +11,18 @@ create table kristall_private.admins (user_id uuid primary key references auth.u
 create table kristall_private.ledgers (
  business_id uuid primary key references public.license_businesses(id),
  version bigint not null default 0,
+ last_serial bigint not null default 0,
  data jsonb not null default '{"version":2,"clients":[],"moves":[]}'
 );
 create table kristall_private.events (
  id bigint generated always as identity primary key,
  business_id uuid not null references public.license_businesses(id),
  request_id uuid not null, actor uuid not null, action text not null,
- version bigint not null, before_data jsonb not null, after_data jsonb not null,
+ version bigint not null, request_data jsonb not null, before_data jsonb not null, after_data jsonb not null,
  created_at timestamptz not null default now(), unique(business_id,request_id)
 );
+create index members_user_business on kristall_private.members(user_id,business_id) where active;
+create index events_business_recent on kristall_private.events(business_id,id desc);
 alter table kristall_private.members enable row level security;
 alter table kristall_private.admins enable row level security;
 alter table kristall_private.ledgers enable row level security;
@@ -27,10 +30,23 @@ alter table kristall_private.events enable row level security;
 revoke all on all tables in schema kristall_private from public, anon, authenticated;
 revoke all on all sequences in schema kristall_private from public, anon, authenticated;
 
+create function kristall_private.assert_session() returns void
+language plpgsql security definer set search_path='' as $$
+begin
+ if auth.uid() is null or not exists (
+ select 1 from auth.sessions ss join auth.users u on u.id=ss.user_id
+ where ss.id=nullif(auth.jwt()->>'session_id','')::uuid and ss.user_id=auth.uid()
+ and (ss.not_after is null or ss.not_after>now()) and u.deleted_at is null
+ and (u.banned_until is null or u.banned_until<=now())
+ ) then raise exception 'Sesión cerrada o inválida. Inicia sesión de nuevo.' using errcode='42501'; end if;
+end $$;
+
 create function kristall_private.assert_access(b uuid) returns void
 language plpgsql security definer set search_path='' as $$
 begin
- if auth.uid() is null or not exists(select 1 from kristall_private.members where business_id=b and user_id=auth.uid() and active) then
+ perform kristall_private.assert_session();
+ perform 1 from kristall_private.members where business_id=b and user_id=auth.uid() and active for share;
+ if not found then
  raise exception 'Acceso al negocio denegado' using errcode='42501'; end if;
  -- Lock the license too: a concurrent suspension cannot race a transaction.
  perform 1 from public.licenses l join public.license_businesses x on x.id=l.business_id
@@ -39,15 +55,17 @@ begin
  if not found then raise exception 'Licencia pendiente, vencida o suspendida' using errcode='42501'; end if;
 end $$;
 
-create function public.kj_account() returns jsonb
-language sql security definer set search_path='' as $$
- select jsonb_build_object('admin', exists(select 1 from kristall_private.admins where user_id=auth.uid()),
+create function kristall_private.kj_account() returns jsonb
+language plpgsql security definer set search_path='' as $$
+begin
+ perform kristall_private.assert_session();
+ return (select jsonb_build_object('admin', exists(select 1 from kristall_private.admins where user_id=auth.uid()),
  'businesses',coalesce((select jsonb_agg(jsonb_build_object('id',b.id,'name',b.display_name,'status',l.status,'paidThrough',l.paid_through,'priceCents',l.monthly_price_cents))
  from kristall_private.members m join public.license_businesses b on b.id=m.business_id
  left join public.licenses l on l.business_id=b.id
- where m.user_id=auth.uid() and m.active and b.product_id='joyerias'),'[]'::jsonb))
-$$;
-create function public.kj_read(b uuid) returns jsonb
+ where m.user_id=auth.uid() and m.active and b.product_id='joyerias'),'[]'::jsonb)));
+end $$;
+create function kristall_private.kj_read(b uuid) returns jsonb
 language plpgsql security definer set search_path='' as $$
 declare r jsonb;
 begin
@@ -87,15 +105,16 @@ begin
  end loop;
 end $$;
 
-create function public.kj_write(b uuid, expected_version bigint, request_id uuid, action text, payload jsonb) returns jsonb
+create function kristall_private.kj_write(b uuid, expected_version bigint, request_id uuid, action text, payload jsonb) returns jsonb
 language plpgsql security definer set search_path='' as $$
-declare old jsonb; d jsonb; item jsonb; prev jsonb; v bigint; idx integer; result jsonb;
+declare old jsonb; d jsonb; item jsonb; prev jsonb; v bigint; serial_no bigint; idx integer; result jsonb;
 begin
  perform kristall_private.assert_access(b);
  if request_id is null then raise exception 'Falta identificador de solicitud'; end if;
  insert into kristall_private.ledgers(business_id) values(b) on conflict do nothing;
- select data,version into old,v from kristall_private.ledgers where business_id=b for update;
+ select data,version,last_serial into old,v,serial_no from kristall_private.ledgers where business_id=b for update;
  if exists(select 1 from kristall_private.events e where e.business_id=b and e.request_id=kj_write.request_id and e.actor=auth.uid()) then
+ if exists(select 1 from kristall_private.events e where e.business_id=b and e.request_id=kj_write.request_id and e.request_data is distinct from jsonb_build_object('action',kj_write.action,'payload',kj_write.payload)) then raise exception 'Identificador ya utilizado con otros datos'; end if;
  return jsonb_build_object('version',v,'data',old); end if;
  if expected_version is distinct from v then raise exception 'Los datos cambiaron. Actualiza y revisa antes de guardar.' using errcode='40001'; end if;
  d=old;
@@ -109,7 +128,8 @@ begin
  d=jsonb_set(d,array['clients',idx::text],item);
  elsif action='move.create' then
  item=payload - 'serial' - 'created' - 'revisions';
- item=item||jsonb_build_object('serial',jsonb_array_length(d->'moves')+1,'created',clock_timestamp(),'revisions','[]'::jsonb);
+ serial_no=serial_no+1;
+ item=item||jsonb_build_object('serial',serial_no,'created',clock_timestamp(),'revisions','[]'::jsonb);
  d=jsonb_set(d,'{moves}',(d->'moves')||jsonb_build_array(item));
  elsif action='move.correct' then
  select ordinality::int-1,value into idx,prev from jsonb_array_elements(d->'moves') with ordinality where value->>'id'=payload->>'id';
@@ -124,11 +144,11 @@ begin
  if d is null then raise exception 'Respaldo no encontrado'; end if;
  else raise exception 'Operación no permitida'; end if;
  perform kristall_private.validate(d);
- insert into kristall_private.events(business_id,request_id,actor,action,version,before_data,after_data) values(b,request_id,auth.uid(),action,v+1,old,d);
- update kristall_private.ledgers set data=d,version=v+1 where business_id=b;
+ insert into kristall_private.events(business_id,request_id,actor,action,version,request_data,before_data,after_data) values(b,request_id,auth.uid(),action,v+1,jsonb_build_object('action',action,'payload',payload),old,d);
+ update kristall_private.ledgers set data=d,version=v+1,last_serial=serial_no where business_id=b;
  return jsonb_build_object('version',v+1,'data',d);
 end $$;
-create function public.kj_backups(b uuid) returns jsonb
+create function kristall_private.kj_backups(b uuid) returns jsonb
 language plpgsql security definer set search_path='' as $$
 begin
  perform kristall_private.assert_access(b);
@@ -137,15 +157,16 @@ end $$;
 create function kristall_private.assert_admin() returns void
 language plpgsql security definer set search_path='' as $$
 begin
+ perform kristall_private.assert_session();
  if auth.uid() is null or not exists(select 1 from kristall_private.admins where user_id=auth.uid()) or coalesce(auth.jwt()->>'aal','')<>'aal2' then raise exception 'Se requiere administrador con verificación de dos pasos' using errcode='42501'; end if;
 end $$;
-create function public.kj_admin_list() returns jsonb
+create function kristall_private.kj_admin_list() returns jsonb
 language plpgsql security definer set search_path='' as $$
 begin
  perform kristall_private.assert_admin();
  return coalesce((select jsonb_agg(jsonb_build_object('id',l.id,'businessId',b.id,'name',b.display_name,'status',l.status,'paidThrough',l.paid_through,'priceCents',l.monthly_price_cents)) from public.licenses l join public.license_businesses b on b.id=l.business_id where b.product_id='joyerias'),'[]'::jsonb);
 end $$;
-create function public.kj_admin_license(license_id uuid, new_status text, through_date date, payment_cents integer, note text, admin_request uuid) returns void
+create function kristall_private.kj_admin_license(license_id uuid, new_status text, through_date date, payment_cents integer, note text, admin_request uuid) returns void
 language plpgsql security definer set search_path='' as $$
 declare l public.licenses; today date=(now() at time zone 'America/Caracas')::date;
 begin
@@ -164,7 +185,7 @@ begin
  end if;
  insert into public.license_audit(license_id,action,actor_uid,details) values(license_id,'manual.'||new_status,auth.uid(),jsonb_build_object('requestId',admin_request,'before',to_jsonb(l),'through',through_date,'paymentCents',payment_cents,'note',note));
 end $$;
-create function public.kj_admin_business(business_name text, business_slug text, user_email text) returns uuid
+create function kristall_private.kj_admin_business(business_name text, business_slug text, user_email text) returns uuid
 language plpgsql security definer set search_path='' as $$
 declare u uuid; b uuid; l uuid;
 begin
@@ -178,9 +199,37 @@ begin
  insert into public.license_audit(license_id,action,actor_uid,details) values(l,'business.create.pending',auth.uid(),jsonb_build_object('businessId',b,'memberId',u));
  return b;
 end $$;
-revoke all on function public.kj_admin_business(text,text,text) from public,anon;
-grant execute on function public.kj_admin_business(text,text,text) to authenticated;
 revoke all on all functions in schema kristall_private from public, anon, authenticated;
-revoke all on function public.kj_account(),public.kj_read(uuid),public.kj_write(uuid,bigint,uuid,text,jsonb),public.kj_backups(uuid),public.kj_admin_list(),public.kj_admin_license(uuid,text,date,integer,text,uuid) from public, anon;
-grant execute on function public.kj_account(),public.kj_read(uuid),public.kj_write(uuid,bigint,uuid,text,jsonb),public.kj_backups(uuid),public.kj_admin_list(),public.kj_admin_license(uuid,text,date,integer,text,uuid) to authenticated;
+grant usage on schema kristall_private to authenticated;
+create function public.kj_account() returns jsonb
+language sql security invoker set search_path='' as $$select kristall_private.kj_account()$$;
+revoke all on function public.kj_account() from public,anon;
+grant execute on function public.kj_account(),kristall_private.kj_account() to authenticated;
+create function public.kj_read(b uuid) returns jsonb
+language sql security invoker set search_path='' as $$select kristall_private.kj_read(b)$$;
+revoke all on function public.kj_read(uuid) from public,anon;
+grant execute on function public.kj_read(uuid),kristall_private.kj_read(uuid) to authenticated;
+create function public.kj_write(b uuid, expected_version bigint, request_id uuid, action text, payload jsonb) returns jsonb
+language sql security invoker set search_path='' as $$select kristall_private.kj_write(b,expected_version,request_id,action,payload)$$;
+revoke all on function public.kj_write(uuid,bigint,uuid,text,jsonb) from public,anon;
+grant execute on function public.kj_write(uuid,bigint,uuid,text,jsonb),kristall_private.kj_write(uuid,bigint,uuid,text,jsonb) to authenticated;
+create function public.kj_backups(b uuid) returns jsonb
+language sql security invoker set search_path='' as $$select kristall_private.kj_backups(b)$$;
+revoke all on function public.kj_backups(uuid) from public,anon;
+grant execute on function public.kj_backups(uuid),kristall_private.kj_backups(uuid) to authenticated;
+create function public.kj_admin_list() returns jsonb
+language sql security invoker set search_path='' as $$select kristall_private.kj_admin_list()$$;
+revoke all on function public.kj_admin_list() from public,anon;
+grant execute on function public.kj_admin_list(),kristall_private.kj_admin_list() to authenticated;
+create function public.kj_admin_license(license_id uuid, new_status text, through_date date, payment_cents integer, note text, admin_request uuid) returns void
+language sql security invoker set search_path='' as $$select kristall_private.kj_admin_license(license_id,new_status,through_date,payment_cents,note,admin_request)$$;
+revoke all on function public.kj_admin_license(uuid,text,date,integer,text,uuid) from public,anon;
+grant execute on function public.kj_admin_license(uuid,text,date,integer,text,uuid),kristall_private.kj_admin_license(uuid,text,date,integer,text,uuid) to authenticated;
+create function public.kj_admin_business(business_name text, business_slug text, user_email text) returns uuid
+language sql security invoker set search_path='' as $$select kristall_private.kj_admin_business(business_name,business_slug,user_email)$$;
+revoke all on function public.kj_admin_business(text,text,text) from public,anon;
+grant execute on function public.kj_admin_business(text,text,text),kristall_private.kj_admin_business(text,text,text) to authenticated;
+-- Event-trigger helper needs no API callers. This does not disable its event trigger.
+revoke execute on function public.rls_auto_enable() from public,anon,authenticated;
+notify pgrst, 'reload schema';
 commit;

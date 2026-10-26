@@ -3,9 +3,15 @@
 ## Estado al 26 de octubre de 2026
 
 Rama `saas/online-v2`. La aplicación v1.32 en la raíz permanece intacta.
-La versión nueva está en `saas/`. No se ha publicado, aplicado esta migración al proyecto real, activado ninguna licencia real ni importado datos.
+La versión nueva está en `saas/`. Se publicó exclusivamente en un sitio privado separado:
+https://kristall-joyas-saas-pruebas.hearty-olive-7420.chatgpt.site
 
-El entorno real sigue pendiente de conexión autorizada a Supabase. El ID de proyecto por sí solo no concede acceso administrativo ni permite obtener la clave pública. `saas/config.js` queda cerrado por defecto hasta configurar la clave publicable legítima del proyecto. Nunca usar service_role en el navegador.
+Site ID: `appgprj_6adee8679d188191a6b345a8877250fe`.
+Su checkout independiente es `/workspace/sites/kristall-saas-trial` y su manifiesto conserva ese ID. No crear otro Site para actualizarlo.
+
+La migración `kristall_online_saas_v2` está aplicada al proyecto real `ngueptnrldrtlxvohsif`. La clave publicable está configurada. No se modificó la aplicación v1.32, no se activó la licencia de Kristall y no se migraron datos.
+
+La cuenta propietaria aún debe crearse y confirmar su correo mediante Auth. No asignar administración a una cuenta basándose solo en ser la primera registrada: verificar con el propietario el correo exacto. Después se insertará su UUID confirmado en `kristall_private.admins`, sin cambiar la licencia real. La aplicación exige TOTP/MFA para administrar.
 
 ## Decisión vigente
 
@@ -17,11 +23,11 @@ La nueva aplicación deberá desplegarse en un **origen independiente**. No prob
 
 La migración aditiva `supabase/migrations/202610260001_online.sql` usa el esquema de licencias existente. No cambia estados ni agrega membresías reales automáticamente.
 
-Tablas financieras en esquema privado, con RLS y sin permisos de acceso directo para anon/authenticated. Solo RPC específicas autenticadas pueden acceder. Cada RPC financiera valida usuario, membresía activa, producto, estado de licencia, revocación y fecha del servidor (America/Caracas). No se usa la hora del teléfono para autorizar.
+Tablas financieras en esquema privado, con RLS y sin permisos de acceso directo para anon/authenticated. Las RPC públicas son SECURITY INVOKER y llaman implementaciones SECURITY DEFINER en esquema no expuesto, con permisos de ejecución limitados. Todas validan sesión real existente en auth.sessions y usuario no eliminado ni bloqueado. Solo RPC específicas autenticadas pueden acceder. Cada RPC financiera valida usuario, membresía activa, producto, estado de licencia, revocación y fecha del servidor (America/Caracas). No se usa la hora del teléfono para autorizar.
 
 El primer almacenamiento transaccional es un documento JSON por negocio, bloqueado durante cada escritura. Incluye versión optimista e identificador de solicitud. Es apropiado para la prueba inicial y volúmenes pequeños; antes de escalar deben medirse tamaño, latencia y coste de las instantáneas y pasar a tablas normalizadas/paginación si procede.
 
-El servidor genera números de comprobante, marcas temporales y auditoría de correcciones. Valida importes con precisión decimal, referencias, duplicados, fechas y saldo histórico nunca negativo. No existe escritura genérica de una base enviada por el navegador.
+El servidor usa un contador monotónico que no retrocede con restauraciones, evitando reutilizar números de comprobante. Genera marcas temporales y auditoría de correcciones. Valida importes con precisión decimal, referencias, duplicados, fechas y saldo histórico nunca negativo. No existe escritura genérica de una base enviada por el navegador.
 
 Clientes, ventas a crédito, abonos, datos de prendas, métodos de pago, calendario, historiales, correcciones y comprobantes reutilizan la interfaz existente. El cliente calcula la presentación del historial sobre la instantánea confirmada por el servidor. Cada modificación se confirma mediante transacción antes de mostrar éxito.
 
@@ -41,14 +47,24 @@ Estos puntos no sustituyen respaldos externos ni recuperación ante pérdida del
 
 ## Validación realizada
 
-- 24 pruebas sobre PostgreSQL aislado con PGlite: permisos directos, aislamiento entre negocios, licencias pendientes/suspendidas/vencidas, acceso anónimo, MFA, precisión monetaria, serial servidor, pagos excesivos, saldo histórico, conflictos de versión, corrección y rollback, auditoría, reintentos y restauración ajena/inexistente, restauración válida, renovación manual idempotente y creación de negocio pendiente.
+- 27 pruebas sobre PostgreSQL aislado con PGlite: permisos directos, aislamiento entre negocios, licencias pendientes/suspendidas/vencidas, acceso anónimo, MFA, precisión monetaria, serial servidor, pagos excesivos, saldo histórico, conflictos de versión, corrección y rollback, auditoría, reintentos y restauración ajena/inexistente, restauración válida, renovación manual idempotente, creación de negocio pendiente, no reutilización de seriales, no reutilización de ID con datos distintos y revocación inmediata de sesión.
 - 5 pruebas del transporte: confirmación servidor, bloqueo por resultado incierto, reintento con mismo ID, bloqueo sin internet y ausencia de almacenamiento financiero/offline.
 - Sintaxis JavaScript válida.
-- Pantalla de acceso verificada en navegador; muestra explícitamente que falta conectar Supabase.
+- 11 comprobaciones adicionales en PostgreSQL real mediante `tests/supabase-rollback.sql`: todas las cuentas, sesiones, negocios, licencias y movimientos ficticios se revirtieron al terminar.
+- API HTTP real: Auth habilitado y registro permitido; RPC y tablas de licencias rechazan solicitudes anónimas con 401.
+- Pantallas de acceso y registro revisadas en navegador. El sitio publicado exige acceso privado con ChatGPT antes del acceso de Supabase.
 - Archivos de la aplicación original sin diferencias respecto de main.
 
-Pendiente: probar contra Supabase Auth/PostgREST reales; revisar las funciones y políticas que ya existen en el proyecto; validar sesión/MFA y alta de cuentas; probar flujos completos, exportación y comprobantes en móvil; ensayar concurrencia real; confirmar respaldos operativos; desplegar en URL independiente. No entregar como producción hasta completar estas comprobaciones.
+Pendiente: validar cuenta y sesión reales de Supabase Auth, TOTP/MFA y los flujos financieros completos en móvil con una joyería de prueba separada. Los ensayos SQL no sustituyen el inicio de sesión mediante el servicio Auth. Confirmar configuración de redirecciones de correo y SMTP, concurrencia HTTP y backups externos antes de producción. La integración conectada no ofrece cambios de configuración Auth/SMTP/PITR; no afirmar que estén configurados.
 
-## Continuación sin SQL manual del propietario
+El asesor de seguridad ya no devuelve advertencias de funciones privilegiadas expuestas. Solo informa RLS sin políticas, intencional en tablas que no admiten acceso directo. El asesor de rendimiento señala índices faltantes en las tres tablas de licencias heredadas; no son problemas de aislamiento y se pueden añadir sin tocar datos.
 
-Conectar Supabase en ChatGPT y autorizar el proyecto `ngueptnrldrtlxvohsif`. Después el agente puede inspeccionar el esquema real, ajustar y aplicar la migración, obtener solo la clave pública para la interfaz y preparar cuentas de prueba separadas. Mantener intactas la licencia pendiente del primer cliente y sus datos. Verificar el correo propietario antes de otorgarle administración; la configuración del autenticador requiere intervención del propietario.
+## Alta inicial y continuidad
+
+El siguiente paso indispensable del propietario es abrir la URL privada, crear su cuenta con una contraseña propia, confirmar el correo e indicar únicamente el correo utilizado. No pedir contraseña ni códigos por chat. Después verificar `auth.users.email_confirmed_at` y asignar administración exclusivamente a esa cuenta con autorización del propietario; no activar la licencia del primer cliente.
+
+El registro usa el correo transaccional de Supabase. Confirmar la configuración de las URLs permitidas en Auth: la integración no expone edición de esa configuración. Si una confirmación termina redirigiendo a localhost, comprobar que el correo quedó verificado y volver a la URL privada; corregir la redirección en el panel antes del lanzamiento.
+
+Una propuesta de auxiliar público privilegiado para crear cuentas ficticias fue rechazada por la revisión automática de seguridad y **no se desplegó**. No reintentarlo por otra vía. Se sustituyó por pruebas transaccionales con rollback y el registro normal del propietario.
+
+No hay aún cuentas reales ni negocio de prueba persistente. Al terminar las comprobaciones de esta etapa: una sola joyería (Kristall), licencia pending de 1500 centavos, paid_through null, cero usuarios y cero eventos financieros. No afirmar que el inicio de sesión extremo a extremo ni la prueba móvil financiera ya se completaron.
