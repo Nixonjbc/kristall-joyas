@@ -265,3 +265,10 @@ button{touch-action:manipulation}
 .receipt-banner{display:block;width:100%;height:auto;aspect-ratio:2.9/1;object-fit:cover;object-position:center;border-radius:7px 7px 0 0}
 .receipt h2,.receipt .ref,.receipt .detail-row,.receipt .notice,.receipt .foot{margin-left:14px;margin-right:14px}
 .receipt h2{margin-top:14px}
+
+/* The Kristall banner already contains its settings icon. Keep only a hit target. */
+.home-hero .home-settings{inset:0!important;display:block!important;pointer-events:none}
+.home-hero .home-settings .home-gear{position:absolute!important;right:1.5%!important;top:2%!important;width:clamp(44px,11%,65px)!important;height:clamp(44px,26%,70px)!important;pointer-events:auto;background:transparent!important;border:0!important;box-shadow:none!important;color:transparent!important;font-size:0!important;text-shadow:none!important;border-radius:8px!important;transform:none!important}
+.home-hero .home-settings .home-gear:active{background:transparent!important;transform:none!important}
+.home-hero .home-settings .home-gear:focus-visible{outline:2px solid #fff2bf!important;outline-offset:-2px!important}
+.home-hero .home-settings .home-version{display:none!important}
